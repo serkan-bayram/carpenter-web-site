@@ -45,7 +45,7 @@
             <li><h1 class="intro-heading">7/24 destek</h1></li>
           </ul>
         </div>
-        <button class="contact-us-btn">Bize ulaşın</button>
+        <button class="contact-us-btn btn">Bize ulaşın</button>
       </div>
       <div class="intro-image">
         <img src="assets/intro-grid.png" alt="Mobilya resimleri" />
@@ -122,25 +122,25 @@
     <div class="options">
       <div class="option-1">
         <div class="heading">
-          <img src="" />
+          <img src="assets/contact.png" />
           <h3>Arayın veya mesaj atın</h3>
         </div>
         <div class="option-whatsapp">
-          <img src="" alt="Whatsapp logosu" />
+          <img src="assets/whatsapp-logo.png" alt="Whatsapp logosu" />
           <h3>0537 879 24 64</h3>
         </div>
         <div class="option-phone">
-          <img src="" alt="Telefon ikonu" />
+          <img src="assets/phone-call.png" alt="Telefon ikonu" />
           <h3>0537 879 24 64</h3>
         </div>
         <div class="option-email">
-          <img src="" alt="Email ikonu" />
+          <img src="assets/email.png" alt="Email ikonu" />
           <h3>mehmet@gmail.com</h3>
         </div>
       </div>
       <div class="option-2">
         <div class="heading">
-          <img src="" />
+          <img src="assets/support.png" />
           <h3>İhtiyacınızı yazın, hemen dönelim</h3>
         </div>
         <form action="">
@@ -149,38 +149,44 @@
               <div class="input-text">
                 <label for="Your Name">Adınız</label>
               </div>
-              <input type="text" name="Your Name" />
+              <input type="text" name="Your Name" id="Your Name" />
             </div>
             <div class="phone-number">
               <div class="input-text">
                 <label for="Phone Number">Telefon Numaranız</label>
               </div>
-              <input type="text" name="Phone Number" />
+
+              <input
+                type="tel"
+                placeholder="555 555 55 55"
+                name="Phone Number"
+                id="Phone Number"
+              />
             </div>
             <div class="your-need">
               <div class="input-text">
                 <label for="Your Need">İhtiyacınız</label>
               </div>
-              <input type="text" name="Your Need" />
+              <textarea name="Your Need" id="Your Need"></textarea>
             </div>
+            <button type="submit" class="send-btn btn">Gönder</button>
           </div>
-          <button type="submit" class="send-btn">Gönder</button>
         </form>
       </div>
-    </div>
-    <div class="option-3">
-      <div class="heading">
-        <img src="" />
-        <h3>Hizmet Verdiğimiz İlçeler</h3>
+      <div class="option-3">
+        <div class="heading">
+          <img src="assets/gps.png" />
+          <h3>Hizmet Verdiğimiz İlçeler</h3>
+        </div>
+        <ul>
+          <li>Pendik</li>
+          <li>Kartal</li>
+          <li>Maltepe</li>
+          <li>Kadıköy</li>
+          <li>Kurtköy</li>
+        </ul>
+        <h4>İlçeniz listede yok mu?</h4>
       </div>
-      <ul>
-        <li>Pendik</li>
-        <li>Kartal</li>
-        <li>Maltepe</li>
-        <li>Kadıköy</li>
-        <li>Kurtköy</li>
-      </ul>
-      <h4>İlçeniz listede yok mu?</h4>
     </div>
   </section>
 </main>
