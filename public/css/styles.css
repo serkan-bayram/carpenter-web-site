@@ -131,14 +131,18 @@ nav li:hover {
   transform: translateY(-7%);
 }
 
-nav li:first-child {
-  text-decoration: underline;
-}
-
 nav li a {
-  text-decoration: none;
+  text-decoration: underline rgba(0, 0, 0, 0);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 200ms;
   color: var(--clr-text-primary);
   white-space: nowrap;
+}
+
+@media screen and (width > 972px) {
+  .current-section {
+    text-decoration-color: rgba(0, 0, 0, 1);
+  }
 }
 
 nav .socials {
@@ -275,7 +279,7 @@ nav .socials {
 
 @media screen and (width > 972px) {
   .intro-image img {
-    min-width: 20em;
+    min-width: 25em;
   }
 }
 
@@ -286,6 +290,12 @@ nav .socials {
   width: 1.5em;
   aspect-ratio: 1;
   cursor: pointer;
+}
+
+@media screen and (width < 400px) {
+  header {
+    padding-inline: 1.25em;
+  }
 }
 
 @media screen and (width < 972px) {

@@ -12,7 +12,38 @@ const navObserver = new IntersectionObserver((entries) => {
 
 navObserver.observe(scrollWatcher);
 
-//intersection observer la bu hakkımızda ana sayfa altındaki çizgileri falan da değiştirebiliriz.
+// which section is in view
+
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav li a");
+
+// if section's 100% and 50px part is in view
+const options = {
+  root: null,
+  threshold: 1,
+  rootMargin: "50px",
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    // if is in view
+    if (entry.isIntersecting === true) {
+      navLinks.forEach((nav) => {
+        // indicate specific section is in view by underlining the nav link
+        // nav.hash -> #home, #about-us etc
+        if (nav.hash === "#" + entry.target.id) {
+          nav.classList.add("current-section");
+        } else {
+          nav.classList.remove("current-section");
+        }
+      });
+    }
+  });
+}, options);
+
+sections.forEach((section) => {
+  observer.observe(section);
+});
 
 // mobile menu
 
@@ -29,8 +60,6 @@ hamburgerMenu.addEventListener("click", () => {
 // we do this to prevent navbar background cover content
 
 const navbarHeight = document.querySelector("header nav").offsetHeight;
-
-console.log(navbarHeight);
 
 document.documentElement.style.setProperty(
   "--scroll-padding",
