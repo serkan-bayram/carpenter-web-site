@@ -78,3 +78,12 @@ phoneInput.addEventListener("keypress", (e) => {
     phoneInput.classList.remove("wrong-text");
   }
 });
+
+// show popup
+
+const popUpText = document.querySelector(".option-3 h4");
+const popUp = document.querySelector(".option-3-popup");
+
+popUpText.addEventListener("click", () => {
+  popUp.classList.toggle("show-popup");
+});
