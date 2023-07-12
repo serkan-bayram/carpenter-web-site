@@ -6,11 +6,11 @@
       <div class="intro-content">
         <div class="intro-heading-container">
           <ul>
-            <li><h1 class="intro-heading">20 yıllık tecrübe</h1></li>
-            <li><h1 class="intro-heading">Vizyonunuzu gerçekleştirin</h1></li>
-            <li><h1 class="intro-heading">Kalitenin adresi</h1></li>
-            <li><h1 class="intro-heading">Tamir ve tadilat işleri</h1></li>
-            <li><h1 class="intro-heading">7/24 destek</h1></li>
+            <% catchPhrases.forEach((phrase) => { %>
+
+            <li><h1 class="intro-heading"><%= phrase %></h1></li>
+
+            <% }) %>
           </ul>
         </div>
         <a class="contact-us-btn btn" href="#contact">Bize ulaşın</a>
@@ -35,14 +35,7 @@
         <h2>Hakkımızda</h2>
       </div>
       <div class="about-us-text">
-        <p>
-          Yıllardır marangozluk sektöründe birikmiş deneyimimizle,
-          müşterilerimize özel ve kişiselleştirilmiş hizmetler sunmaktayız.
-          Misyonumuz, ahşap malzemeleri hayata geçirirken zarafeti,
-          dayanıklılığı ve işlevselliği bir araya getirmektir. Müşteri
-          memnuniyeti bizim için en üst önceliktir ve her projede en yüksek
-          kaliteyi sağlamak için titizlikle çalışırız.
-        </p>
+        <p><%= aboutUs %></p>
       </div>
     </div>
   </section>
@@ -52,36 +45,20 @@
     </div>
 
     <div class="cards">
+      <% fetchedCards.forEach((card) => { %>
+
       <div class="card">
-        <img loading="lazy" src="assets/card-1.webp" />
+        <img loading="lazy" src="<%= card.cardImage %>" />
         <div class="card-shadow"></div>
         <div class="card-text">
-          <h3>Bahçe mobilyası</h3>
+          <h3><%= card.cardHeading %></h3>
           <div class="card-info">
-            <p>Rahatlığın ve zarafetin buluştuğu açık hava keyfi.</p>
+            <p><%= card.cardInfo %></p>
           </div>
         </div>
       </div>
-      <div class="card">
-        <img loading="lazy" src="assets/card-2.webp" />
-        <div class="card-shadow"></div>
-        <div class="card-text">
-          <h3>Mutfak mobilyası</h3>
-          <div class="card-info">
-            <p>Şıklık ve fonksiyonun birleştiği mutfağınıza özel tasarımlar.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <img loading="lazy" src="assets/card-3.webp" />
-        <div class="card-shadow"></div>
-        <div class="card-text">
-          <h3>Banyo mobilyası</h3>
-          <div class="card-info">
-            <p>Estetik ve düzenin bir araya geldiği özel banyo çözümleri.</p>
-          </div>
-        </div>
-      </div>
+
+      <% }) %>
     </div>
   </section>
   <section id="contact">
@@ -95,17 +72,28 @@
         </div>
         <div class="option-whatsapp">
           <img src="assets/whatsapp-logo.png" alt="Whatsapp logosu" />
-          <p><a href="https://wa.me/+905378792464">0537 879 24 64</a></p>
+          <p>
+            <!-- this regex deletes all white spaces -->
+            <a
+              href="https://wa.me/+9<%=contacts.whatsappNumber.replace(/ /g,'')%>"
+              ><%= contacts.whatsappNumber %></a
+            >
+          </p>
         </div>
         <div class="option-phone">
           <img src="assets/phone-call.png" alt="Telefon ikonu" />
-          <p><a href="tel:+905378792464">0537 879 24 64</a></p>
+          <p>
+            <a href="tel:+9<%=contacts.phoneNumber.replace(/ /g,'')%>"
+              ><%= contacts.phoneNumber %></a
+            >
+          </p>
         </div>
         <div class="option-email">
           <img src="assets/email.png" alt="Email ikonu" />
           <p>
-            <a href="mailto:mehmet@gmail.com?subject=Hizmet almak istiyorum"
-              >mehmet@gmail.com</a
+            <a
+              href="mailto:<%= contacts.email %>?subject=Hizmet almak istiyorum"
+              ><%= contacts.email %></a
             >
           </p>
         </div>
@@ -151,11 +139,11 @@
           <h3>Hizmet Verdiğimiz İlçeler</h3>
         </div>
         <ul>
-          <li>Pendik</li>
-          <li>Kartal</li>
-          <li>Maltepe</li>
-          <li>Kadıköy</li>
-          <li>Kurtköy</li>
+          <% locations.forEach((location) => { %>
+
+          <li><%= location %></li>
+
+          <% }) %>
         </ul>
         <h4>İlçeniz listede yok mu?</h4>
         <div class="option-3-popup">

@@ -37,17 +37,21 @@
         </ul>
         <div class="socials">
           <div>
-            <a href="https://wa.me/+905378792464"
+            <a
+              target="_blank"
+              href="https://wa.me/+9<%=contacts.whatsappNumber.replace(/ /g,'')%>"
               ><img src="assets/whatsapp-logo.png" alt="Whatsapp logosu"
             /></a>
           </div>
           <div>
-            <a href="tel:+905378792464"
+            <a href="tel:+9<%=contacts.phoneNumber.replace(/ /g,'')%>"
               ><img src="assets/phone-call.png" alt="Telefon ikonu"
             /></a>
           </div>
           <div>
-            <a href=""
+            <a
+              target="_blank"
+              href="https://www.instagram.com/<%= contacts.instagram %>"
               ><img src="assets/instagram-logo.png" alt="Instagram logosu"
             /></a>
           </div>
