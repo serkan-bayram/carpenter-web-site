@@ -103,33 +103,55 @@
           <img src="assets/support.png" />
           <h3>İhtiyacınızı yazın, hemen dönelim</h3>
         </div>
-        <form action="">
+        <form action="/" method="POST">
           <div class="input-container">
             <div class="your-name">
               <div class="input-text">
-                <label for="Your Name">Adınız</label>
+                <label for="yourName">Adınız</label>
               </div>
-              <input type="text" name="Your Name" id="Your Name" />
+              <input
+                type="text"
+                name="yourName"
+                id="Your Name"
+                required
+                oninvalid="this.setCustomValidity('Lütfen adınızı giriniz.')"
+                oninput="this.setCustomValidity('')"
+              />
             </div>
             <div class="phone-number">
               <div class="input-text">
-                <label for="Phone Number">Telefon Numaranız</label>
+                <label for="phoneNumber">Telefon Numaranız</label>
               </div>
 
               <input
                 type="tel"
                 placeholder="5** *** ** **"
-                name="Phone Number"
+                name="phoneNumber"
                 id="Phone Number"
+                required
+                oninvalid="this.setCustomValidity('Lütfen telefon numaranızı giriniz.')"
+                oninput="this.setCustomValidity('')"
               />
             </div>
             <div class="your-need">
               <div class="input-text">
-                <label for="Your Need">İhtiyacınız</label>
+                <label for="yourNeed">İhtiyacınız</label>
               </div>
-              <textarea name="Your Need" id="Your Need"></textarea>
+              <textarea
+                name="yourNeed"
+                id="Your Need"
+                required
+                oninvalid="this.setCustomValidity('Lütfen ihtiyacınızı yazınız.')"
+                oninput="this.setCustomValidity('')"
+              ></textarea>
             </div>
-            <button type="submit" class="send-btn btn">Gönder</button>
+            <button
+              type="submit"
+              class="send-btn btn"
+              onclick="validateInput()"
+            >
+              Gönder
+            </button>
           </div>
         </form>
       </div>

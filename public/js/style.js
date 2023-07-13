@@ -66,18 +66,50 @@ document.documentElement.style.setProperty(
   navbarHeight + "px"
 );
 
-// checking is phone input valid
+// input validation
 
 const phoneInput = document.querySelector(".phone-number input");
+const nameInput = document.querySelector(".your-name input");
+const needInput = document.querySelector(".your-need textarea");
+
+nameInput.addEventListener("keypress", (e) => {
+  if (nameInput.value.length > 25) {
+    e.preventDefault();
+    nameInput.classList.toggle("wrong-text");
+  }
+});
+
+needInput.addEventListener("keypress", (e) => {
+  if (needInput.value.length > 700) {
+    e.preventDefault();
+    needInput.classList.toggle("wrong-text");
+  }
+});
 
 phoneInput.addEventListener("keypress", (e) => {
+  const inputValue = phoneInput.value;
+
   if (isNaN(e.key)) {
     e.preventDefault();
     phoneInput.classList.toggle("wrong-text");
+  } else if (inputValue.length == 10) {
+    e.preventDefault();
   } else {
     phoneInput.classList.remove("wrong-text");
   }
 });
+
+function validateInput() {
+  if (
+    needInput.value.length > 0 &&
+    nameInput.value.length > 0 &&
+    phoneInput.value.length > 0
+  ) {
+    alert(
+      "İhtiyacınız başarılı bir şekilde gönderildi, en kısa zamanda dönüş yapacağız."
+    );
+  }
+}
 
 // show popup
 

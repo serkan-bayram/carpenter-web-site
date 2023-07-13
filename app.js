@@ -72,13 +72,13 @@ async function main() {
   const mobilyaInstance = new Mobilya(mobilya);
   // await mobilyaInstance.save();
 
+  const fetchedData = await Mobilya.find({ _id: "64af1b934e6b3bcc6ceadd44" });
+
+  const contacts = fetchedData[0].contacts;
   app.get("/", async (req, res) => {
-    const fetchedData = await Mobilya.find({ _id: "64af1b934e6b3bcc6ceadd44" });
     const catchPhrases = fetchedData[0].catchPhrases;
     const aboutUs = fetchedData[0].aboutUs;
     const locations = fetchedData[0].locations;
-    const contacts = fetchedData[0].contacts;
-
     const fetchedCards = await Card.find({}).limit(3);
 
     res.render("index", {
@@ -90,10 +90,34 @@ async function main() {
     });
   });
 
-  app.post("/", (req, res) => {});
+  app.post("/", async (req, res) => {
+    const name = req.body.yourName;
+    const phoneNumber = req.body.phoneNumber;
+    const need = req.body.yourNeed;
+
+    // we need validation before we add it to database
+
+    const needSchema = new mongoose.Schema({
+      clientName: String,
+      clientPhoneNumber: String,
+      clientNeed: String,
+    });
+
+    const Need = new mongoose.model("Need", needSchema);
+
+    const needInstance = new Need({
+      clientName: name,
+      clientPhoneNumber: phoneNumber,
+      clientNeed: need,
+    });
+
+    await needInstance.save();
+
+    res.redirect("/");
+  });
 
   app.get("/gallery", (req, res) => {
-    res.render("gallery");
+    res.render("gallery", { contacts: contacts });
   });
 
   app.listen(3000, () => {
