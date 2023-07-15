@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const { HostAddress } = require("mongodb");
 
 const app = express();
 
@@ -19,6 +20,7 @@ async function main() {
     console.log("Connected to database.");
   }
 
+  // schema for landing page
   const mobilyaSchema = new mongoose.Schema({
     catchPhrases: [String],
     aboutUs: String,
@@ -31,6 +33,7 @@ async function main() {
     locations: [String],
   });
 
+  // schema for landing page cards
   const cardSchema = new mongoose.Schema({
     cardImage: String,
     cardHeading: String,
@@ -72,6 +75,7 @@ async function main() {
   const mobilyaInstance = new Mobilya(mobilya);
   // await mobilyaInstance.save();
 
+  // fetching data from database
   const fetchedData = await Mobilya.find({ _id: "64af1b934e6b3bcc6ceadd44" });
 
   const contacts = fetchedData[0].contacts;
@@ -90,6 +94,13 @@ async function main() {
     });
   });
 
+  const needSchema = new mongoose.Schema({
+    clientName: String,
+    clientPhoneNumber: String,
+    clientNeed: String,
+    date: String,
+  });
+
   app.post("/", async (req, res) => {
     const name = req.body.yourName;
     const phoneNumber = req.body.phoneNumber;
@@ -97,13 +108,7 @@ async function main() {
     const date = new Date();
 
     // we need validation before we add it to database
-
-    const needSchema = new mongoose.Schema({
-      clientName: String,
-      clientPhoneNumber: String,
-      clientNeed: String,
-      date: String,
-    });
+    // schema for client's needs
 
     const Need = new mongoose.model("Need", needSchema);
 
@@ -119,8 +124,44 @@ async function main() {
     res.redirect("/");
   });
 
-  app.get("/gallery", (req, res) => {
-    res.render("gallery", { contacts: contacts });
+  const gallerySchema = new mongoose.Schema({
+    photoImage: String,
+    photoDirection: String,
+    photoCategory: String,
+    date: String,
+  });
+
+  app.get("/gallery", async (req, res) => {
+    // when we add photo to database
+    const date = new Date();
+
+    const Photo = new mongoose.model("Photo", gallerySchema);
+
+    // photoDirection -> horizontal or vertical
+    const photoInstance = new Photo({
+      photoImage: "pexels-pixabay-279648.jpg",
+      photoDirection: "horizontal",
+      photoCategory: "kitchen",
+      date: date,
+    });
+
+    // await photoInstance.save();
+
+    const horizontalPhotos = await Photo.find({
+      photoDirection: "horizontal",
+    });
+    const verticalPhotos = await Photo.find({
+      photoDirection: "vertical",
+    });
+
+    const length = Math.min(horizontalPhotos.length, verticalPhotos.length);
+
+    res.render("gallery", {
+      contacts: contacts,
+      horizontalPhotos: horizontalPhotos,
+      verticalPhotos: verticalPhotos,
+      length: length,
+    });
   });
 
   app.listen(3000, () => {

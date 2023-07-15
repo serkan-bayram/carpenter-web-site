@@ -1,5 +1,46 @@
 <%- include("partials/header") %>
 
-<h1>You are in gallery</h1>
+<section id="gallery">
+  <div class="gallery-heading"><h2>Galeri</h2></div>
+  <!-- ToDo: Add this feature -->
+  <div class="categories">
+    <!-- <div class="category"><button>Mutfak Dolabı</button></div>
+    <div class="category"><button>Banyo Dolabı</button></div>
+    <div class="category"><button>Parke</button></div> -->
+  </div>
+  <div class="photos">
+    <span>Temsilidir*</span>
+    <% for (let i = 0; i < length - 1; i+=2) { %>
+    <div class="photo horizontal">
+      <img
+        loading="lazy"
+        src="assets/gallery/<%= horizontalPhotos[i].photoImage %>"
+        alt=""
+      />
+    </div>
+    <div class="photo">
+      <img
+        loading="lazy"
+        src="assets/gallery/<%= verticalPhotos[i].photoImage %>"
+        alt=""
+      />
+    </div>
+    <div class="photo">
+      <img
+        loading="lazy"
+        src="assets/gallery/<%= verticalPhotos[i+1].photoImage %>"
+        alt=""
+      />
+    </div>
+    <div class="photo horizontal">
+      <img
+        loading="lazy"
+        src="assets/gallery/<%= horizontalPhotos[i+1].photoImage %>"
+        alt=""
+      />
+    </div>
+    <% } %>
+  </div>
+</section>
 
 <%- include("partials/footer") %>

@@ -76,7 +76,7 @@ const navbarHeight = document.querySelector("header nav").offsetHeight;
 
 document.documentElement.style.setProperty(
   "--scroll-padding",
-  navbarHeight + "px"
+  navbarHeight + -100 + "px"
 );
 
 if (window.location.pathname === "/") {
@@ -146,6 +146,8 @@ if (window.location.pathname === "/gallery") {
   navLinks.forEach((navItem) => {
     if (navItem.innerHTML != "Galeri") {
       navItem.href = navItem.href.replace("gallery", "");
+    } else {
+      navItem.classList.add("current-section");
     }
   });
 }
