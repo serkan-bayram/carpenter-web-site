@@ -94,6 +94,7 @@ async function main() {
     const name = req.body.yourName;
     const phoneNumber = req.body.phoneNumber;
     const need = req.body.yourNeed;
+    const date = new Date();
 
     // we need validation before we add it to database
 
@@ -101,6 +102,7 @@ async function main() {
       clientName: String,
       clientPhoneNumber: String,
       clientNeed: String,
+      date: String,
     });
 
     const Need = new mongoose.model("Need", needSchema);
@@ -109,6 +111,7 @@ async function main() {
       clientName: name,
       clientPhoneNumber: phoneNumber,
       clientNeed: need,
+      date: date,
     });
 
     await needInstance.save();

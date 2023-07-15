@@ -318,7 +318,7 @@ nav .socials {
     flex-direction: column;
     left: 50%;
     transform: translate(-50%, -9999%);
-    top: 10em;
+    top: 4em;
     background-color: white;
     text-align: center;
     padding: 5em 4em;
@@ -329,7 +329,7 @@ nav .socials {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -9999%);
-    top: 30em;
+    top: 24em;
     transition: all 250ms ease-in-out;
   }
 
